@@ -1,0 +1,15 @@
+services:
+  db:
+    image: pgvector/pgvector:0.8.2-pg18-trixie
+    container_name: db
+    restart: always
+    shm_size: 128mb
+    ports:
+      - 5433:5432
+    volumes:
+      - type: bind
+        source: ./.data/
+        target: /var/lib/postgresql/18/docker
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: kb
